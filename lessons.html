@@ -29,5 +29,39 @@ button{font:inherit;font-weight:700;background:var(--btn);color:#fff;border:0;bo
 <li>Only occasional emails about new lessons and app updates. Reply "unsubscribe" to any of them and we'll remove you.</li>
 <li>We never sell or share your email, and the app itself never asks for it.</li>
 <li>Sign-ups are passed to our inbox by FormSubmit, a form service. See our <a href="privacy.html#emails">privacy policy</a>.</li></ul>
+<script>
+// Send the sign-up in the background so parents stay on this page.
+// If anything goes wrong, fall back to the normal form submission above.
+(function () {
+  var form = document.querySelector('form[action^="https://formsubmit.co/"]');
+  if (!form || !window.fetch) return;
+  var button = form.querySelector('button[type=submit]');
+  var label = button.textContent;
+  var thanked = function () { location.hash = 'thanks'; };
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = {};
+    new FormData(form).forEach(function (v, k) { if (k !== '_next') data[k] = v; });
+    if (data._honey) { thanked(); return; }
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && (res.success === true || res.success === 'true')) thanked();
+        else throw new Error('not sent');
+      })
+      .catch(function () {
+        button.disabled = false;
+        button.textContent = label;
+        form.submit();
+      });
+  });
+})();
+</script>
 <div dir="rtl"><h2>دروس جديدة</h2><p>اكتب بريدك الإلكتروني وسنخبرك عندما نضيف دروسًا جديدة إلى «يلا مصري». للآباء والكبار فقط.</p></div>
 <p class="small">© 2026 Ashraf Mostafa</p></main></body></html>
