@@ -5,6 +5,7 @@
 .card{background:var(--card);border:2px solid var(--ln);border-radius:18px;padding:18px 22px;margin:18px 0;box-shadow:0 4px 0 var(--accent)}h1{margin:.2em 0}h2{margin-top:1.4em}a{color:inherit}
 [dir=rtl]{text-align:right}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:30px;margin-right:auto}.brand img{border-radius:16px;display:block}nav{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}@media(max-width:520px){.brand{font-size:24px;flex-basis:100%}}
 form{display:grid;gap:12px}label{font-weight:700}input[type=email]{width:100%;font:inherit;padding:12px 14px;border:2px solid var(--ln);border-radius:12px;background:var(--bg);color:var(--fg)}input[type=email]:focus{outline:3px solid var(--btn);outline-offset:1px}
+fieldset{border:0;margin:4px 0 0;padding:0}legend{font-weight:700;padding:0;margin-bottom:4px}.langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px}.other{width:100%;font:inherit;padding:10px 14px;border:2px solid var(--ln);border-radius:12px;background:var(--bg);color:var(--fg);margin-top:8px}.hint{font-weight:400;font-size:15px;opacity:.85}
 .check{display:flex;gap:10px;align-items:flex-start;font-weight:400}.check input{width:22px;height:22px;margin-top:3px;flex:none}
 button{font:inherit;font-weight:700;background:var(--btn);color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer;justify-self:start}button:hover{filter:brightness(1.08)}
 .small{font-size:15px;opacity:.85}.thanks{display:none}#thanks:target{display:block}#thanks:target~.form-card{display:none}ul{padding-left:1.2em}</style></head><body><main>
@@ -17,6 +18,17 @@ button{font:inherit;font-weight:700;background:var(--btn);color:#fff;border:0;bo
 <form action="https://formsubmit.co/hello@yallamasry.app" method="post">
 <label for="email">Your email</label>
 <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+<fieldset>
+<legend>Which language would your family like next? <span class="hint">(optional, pick any)</span></legend>
+<div class="langs">
+<label class="check"><input type="checkbox" name="next_language" value="English"><span>English</span></label>
+<label class="check"><input type="checkbox" name="next_language" value="French"><span>French</span></label>
+<label class="check"><input type="checkbox" name="next_language" value="Spanish"><span>Spanish</span></label>
+<label class="check"><input type="checkbox" name="next_language" value="German"><span>German</span></label>
+</div>
+<label for="other_language" class="hint" style="display:block;margin-top:8px">Something else?</label>
+<input type="text" id="other_language" name="other_language" class="other" maxlength="60" placeholder="e.g. Levantine Arabic">
+</fieldset>
 <label class="check"><input type="checkbox" name="adult" required><span>I'm a parent or grown-up (18 or older). Children shouldn't sign up.</span></label>
 <input type="hidden" name="_subject" value="New lessons sign-up (yallamasry.app)">
 <input type="hidden" name="_next" value="https://yallamasry.app/lessons.html#thanks">
@@ -41,7 +53,10 @@ button{font:inherit;font-weight:700;background:var(--btn);color:#fff;border:0;bo
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var data = {};
-    new FormData(form).forEach(function (v, k) { if (k !== '_next') data[k] = v; });
+    new FormData(form).forEach(function (v, k) {
+      if (k === '_next' || v === '') return;
+      data[k] = data[k] ? data[k] + ', ' + v : v;
+    });
     if (data._honey) { thanked(); return; }
     button.disabled = true;
     button.textContent = 'Sending…';
@@ -63,5 +78,5 @@ button{font:inherit;font-weight:700;background:var(--btn);color:#fff;border:0;bo
   });
 })();
 </script>
-<div dir="rtl"><h2>دروس جديدة</h2><p>اكتب بريدك الإلكتروني وسنخبرك عندما نضيف دروسًا جديدة إلى «يلا مصري». للآباء والكبار فقط.</p></div>
+<div dir="rtl"><h2>دروس جديدة</h2><p>اكتب بريدك الإلكتروني وسنخبرك عندما نضيف دروسًا جديدة إلى «يلا مصري». ويمكنك أن تخبرنا بأي لغة تريدها عائلتك بعد ذلك. للآباء والكبار فقط.</p></div>
 <p class="small">© 2026 Ashraf Mostafa</p></main></body></html>
