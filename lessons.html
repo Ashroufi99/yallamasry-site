@@ -8,75 +8,37 @@ form{display:grid;gap:12px}label{font-weight:700}input[type=email]{width:100%;fo
 fieldset{border:0;margin:4px 0 0;padding:0}legend{font-weight:700;padding:0;margin-bottom:4px}.langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px}.other{width:100%;font:inherit;padding:10px 14px;border:2px solid var(--ln);border-radius:12px;background:var(--bg);color:var(--fg);margin-top:8px}.hint{font-weight:400;font-size:15px;opacity:.85}
 .check{display:flex;gap:10px;align-items:flex-start;font-weight:400}.check input{width:22px;height:22px;margin-top:3px;flex:none}
 button{font:inherit;font-weight:700;background:var(--btn);color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer;justify-self:start}button:hover{filter:brightness(1.08)}
-.small{font-size:15px;opacity:.85}.thanks{display:none}#thanks:target{display:block}#thanks:target~.form-card{display:none}ul{padding-left:1.2em}</style></head><body><main>
+.small{font-size:15px;opacity:.85}ul{padding-left:1.2em}</style></head><body><main>
 <nav><a class="brand" href="index.html"><img src="logo.png" alt="Yalla Masry sun logo" width="72" height="72"><span>Yalla Masry</span></a><a href="lessons.html">New lessons</a><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
 <h1>Hear about new lessons</h1>
 <p>We're working on more for little learners: colors, food, family words, greetings and more. Leave your email and we'll tell you when new lessons arrive in Yalla Masry.</p>
-<div id="thanks" class="card thanks"><h2>Thank you!</h2><p>You're on the list. We'll email you when new lessons arrive.</p></div>
 <div class="card form-card">
-<!-- Sign-ups are emailed to hello@yallamasry.app by FormSubmit (formsubmit.co). The first sign-up sends an activation email to that address; confirm it once. -->
-<form action="https://formsubmit.co/hello@yallamasry.app" method="post">
+<!-- Sign-ups go to the Yalla Masry list on Buttondown (username: yallamasry). Buttondown emails each new subscriber a confirmation link.
+     Language answers are saved on the subscriber as metadata: wants_english / wants_french / wants_spanish / wants_german = "yes", other_language = free text. -->
+<form action="https://buttondown.com/api/emails/embed-subscribe/yallamasry" method="post" class="embeddable-buttondown-form">
 <label for="email">Your email</label>
 <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
 <fieldset>
 <legend>Which language would your family like next? <span class="hint">(optional, pick any)</span></legend>
 <div class="langs">
-<label class="check"><input type="checkbox" name="next_language" value="English"><span>English</span></label>
-<label class="check"><input type="checkbox" name="next_language" value="French"><span>French</span></label>
-<label class="check"><input type="checkbox" name="next_language" value="Spanish"><span>Spanish</span></label>
-<label class="check"><input type="checkbox" name="next_language" value="German"><span>German</span></label>
+<label class="check"><input type="checkbox" name="metadata__wants_english" value="yes"><span>English</span></label>
+<label class="check"><input type="checkbox" name="metadata__wants_french" value="yes"><span>French</span></label>
+<label class="check"><input type="checkbox" name="metadata__wants_spanish" value="yes"><span>Spanish</span></label>
+<label class="check"><input type="checkbox" name="metadata__wants_german" value="yes"><span>German</span></label>
 </div>
 <label for="other_language" class="hint" style="display:block;margin-top:8px">Something else?</label>
-<input type="text" id="other_language" name="other_language" class="other" maxlength="60" placeholder="e.g. Levantine Arabic">
+<input type="text" id="other_language" name="metadata__other_language" class="other" maxlength="60" placeholder="e.g. Levantine Arabic">
 </fieldset>
-<label class="check"><input type="checkbox" name="adult" required><span>I'm a parent or grown-up (18 or older). Children shouldn't sign up.</span></label>
-<input type="hidden" name="_subject" value="New lessons sign-up (yallamasry.app)">
-<input type="hidden" name="_next" value="https://yallamasry.app/lessons.html#thanks">
-<input type="hidden" name="_template" value="table">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<label class="check"><input type="checkbox" required><span>I'm a parent or grown-up (18 or older). Children shouldn't sign up.</span></label>
+<input type="hidden" name="metadata__source" value="lessons-page">
+<input type="hidden" name="embed" value="1">
 <button type="submit">Tell me about new lessons</button>
+<p class="small" style="margin:0">We'll email you a link to confirm. Tap it and you're on the list.</p>
 </form>
 </div>
 <ul class="small">
-<li>Only occasional emails about new lessons and app updates. Reply "unsubscribe" to any of them and we'll remove you.</li>
+<li>Only occasional emails about new lessons and app updates. Every email has a one-click unsubscribe link.</li>
 <li>We never sell or share your email, and the app itself never asks for it.</li>
-<li>Sign-ups are passed to our inbox by FormSubmit, a form service. See our <a href="privacy.html#emails">privacy policy</a>.</li></ul>
-<script>
-// Send the sign-up in the background so parents stay on this page.
-// If anything goes wrong, fall back to the normal form submission above.
-(function () {
-  var form = document.querySelector('form[action^="https://formsubmit.co/"]');
-  if (!form || !window.fetch) return;
-  var button = form.querySelector('button[type=submit]');
-  var label = button.textContent;
-  var thanked = function () { location.hash = 'thanks'; };
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var data = {};
-    new FormData(form).forEach(function (v, k) {
-      if (k === '_next' || v === '') return;
-      data[k] = data[k] ? data[k] + ', ' + v : v;
-    });
-    if (data._honey) { thanked(); return; }
-    button.disabled = true;
-    button.textContent = 'Sending…';
-    fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
-    })
-      .then(function (r) { return r.json(); })
-      .then(function (res) {
-        if (res && (res.success === true || res.success === 'true')) thanked();
-        else throw new Error('not sent');
-      })
-      .catch(function () {
-        button.disabled = false;
-        button.textContent = label;
-        form.submit();
-      });
-  });
-})();
-</script>
+<li>Our list is kept by Buttondown, the email service we use. See our <a href="privacy.html#emails">privacy policy</a>.</li></ul>
 <div dir="rtl"><h2>دروس جديدة</h2><p>اكتب بريدك الإلكتروني وسنخبرك عندما نضيف دروسًا جديدة إلى «يلا مصري». ويمكنك أن تخبرنا بأي لغة تريدها عائلتك بعد ذلك. للآباء والكبار فقط.</p></div>
 <p class="small">© 2026 Ashraf Mostafa</p></main></body></html>
