@@ -1,0 +1,106 @@
+/* Yalla Masry website — shared styles for every page.
+   Palette (the app's): sandstone #E7C598, cream #FFF9EE, dark brown #694638,
+   signature gold #FFD000 (restrained: one badge), light gold #FFE14D, highlight #FFF066.
+   System fonts only: the site loads nothing from other servers. */
+:root {
+  color-scheme: light dark;
+  --sand: #e7c598;
+  --bg: #f6e7cc;
+  --card: #fff9ee;
+  --ink: #694638;
+  --text: #4a3328;
+  --muted: #7d5f50;
+  --line: #e2c49c;
+  --gold: #ffd000;
+  --gold-light: #ffe14d;
+  --btn-text: #fff9ee;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #241a14; --card: #33261e; --ink: #f0d9b8; --text: #f3e6d3; --muted: #c9ad92;
+    --line: #5a4434; --btn-text: #241a14;
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+}
+[lang="ar"], [dir="rtl"] { font-family: "SF Arabic", "Geeza Pro", "Noto Naskh Arabic", "Segoe UI", system-ui, sans-serif; }
+main {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 20px 56px;
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+}
+.wide { max-width: 960px; }
+a { color: var(--ink); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+
+/* Navigation */
+.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; }
+.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; text-decoration: none; color: var(--ink); }
+.brand img { border-radius: 16px; display: block; }
+.brand-name { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-name b { font-size: 26px; font-weight: 800; }
+.brand-name span { font-size: 17px; }
+.site-nav a:not(.brand) { font-size: 16px; font-weight: 600; text-decoration: none; padding: 8px 0; }
+.site-nav a:not(.brand)[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; }
+@media (max-width: 560px) {
+  .site-nav { justify-content: center; }
+  .brand { margin-right: 0; flex-basis: 100%; justify-content: center; }
+}
+
+/* Type */
+h1 { color: var(--ink); font-size: clamp(30px, 5.4vw, 46px); line-height: 1.15; margin: 28px 0 8px; text-wrap: balance; }
+h2 { color: var(--ink); font-size: 22px; line-height: 1.3; margin: 34px 0 8px; text-wrap: balance; }
+h3 { color: var(--ink); font-size: 18px; margin: 22px 0 4px; }
+p { margin: 0 0 12px; }
+.lead { font-size: 20px; max-width: 62ch; }
+.muted { color: var(--muted); }
+.small { font-size: 15px; }
+ul { padding-left: 1.2em; }
+li { margin: 0 0 6px; }
+
+/* Blocks */
+.banner {
+  height: clamp(220px, 44vw, 430px); margin: 18px 0 0; border-radius: 24px;
+  border: 2px solid var(--line); background: url(splash.webp) center / cover no-repeat;
+}
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 18px 22px; margin: 18px 0; }
+.card > :last-child { margin-bottom: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 14px 0; }
+.grid .card { margin: 0; }
+.grid h3 { margin-top: 0; }
+.badge {
+  display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 15px; font-weight: 700;
+  background: var(--gold); color: #694638; border: 2px solid #694638;
+}
+.rtl { direction: rtl; text-align: right; }
+.faq h3 { margin-top: 26px; }
+.contact { font-size: 19px; font-weight: 700; }
+
+/* Forms (New Lessons) */
+form { display: grid; gap: 12px; }
+label { font-weight: 700; }
+input[type="email"], input[type="text"] {
+  width: 100%; font: inherit; padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px;
+  background: var(--bg); color: var(--text);
+}
+fieldset { border: 0; margin: 4px 0 0; padding: 0; min-width: 0; }
+legend { font-weight: 700; padding: 0; margin-bottom: 4px; }
+.langs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
+.check input { width: 22px; height: 22px; margin-top: 3px; flex: none; accent-color: #694638; }
+.hint { font-weight: 400; font-size: 15px; color: var(--muted); }
+.button {
+  font: inherit; font-weight: 700; background: var(--ink); color: var(--btn-text); border: 0;
+  border-radius: 999px; padding: 12px 24px; cursor: pointer; justify-self: start; min-height: 44px;
+}
+.button:hover { filter: brightness(1.1); }
+
+/* Footer */
+.site-footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+.site-footer p { margin: 0 0 6px; }
+.site-footer a { color: var(--muted); }
