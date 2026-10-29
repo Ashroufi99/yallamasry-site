@@ -104,3 +104,7 @@ legend { font-weight: 700; padding: 0; margin-bottom: 4px; }
 .site-footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
 .site-footer p { margin: 0 0 6px; }
 .site-footer a { color: var(--muted); }
+
+/* App Store link */
+a.button { display: inline-block; text-decoration: none; }
+a.button:hover { text-decoration: none; }
