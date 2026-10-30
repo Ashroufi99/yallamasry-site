@@ -31,3 +31,5 @@
 .content .muted{color:#627285}
 .content .faq h3{font-family:var(--serif);font-size:23px;margin:30px 0 8px}
 .content .contact a{font-weight:700;font-size:22px}
+
+.app-badge{display:inline-block;line-height:0;border-radius:9px;transition:transform .15s}.app-badge:hover{transform:translateY(-1px)}.app-badge:focus-visible{outline:3px solid #c8962e;outline-offset:3px}.app-badge img{height:54px;width:auto;display:block}@media(max-width:640px){.app-badge img{height:48px}}
