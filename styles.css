@@ -21,7 +21,7 @@
   }
 }
 @media (max-width:480px) {
-  .hero{min-height:660px;background:linear-gradient(180deg,#fffcf5 0%,#fffcf5 35%,rgba(255,252,245,.55) 47%,rgba(255,252,245,0) 65%),url('assets/nile-sunset.jpg') 97% 100%/auto 65% no-repeat,#fffcf5;}
+  .hero{min-height:660px;background:linear-gradient(180deg,#fffcf5 0%,#fffcf5 43%,rgba(255,252,245,.55) 55%,rgba(255,252,245,0) 73%),url('assets/nile-sunset.jpg') 97% 100%/auto 57% no-repeat,#fffcf5;}
   .hero-text{max-width:355px;}
   .hero h1{font-size:clamp(39px,10.2vw,49px);}
 }
