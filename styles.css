@@ -81,3 +81,29 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:var(--s
 .feature-line span,.feature-line span:first-child{border:1.5px solid var(--sun);padding:5px 13px;border-radius:999px;background:#fff9ee;color:var(--ink)}
 .statement{padding:20px 24px;margin-bottom:14px;border-top:1px solid var(--line)}
 .phone{background:#3a2118;border-color:#3a2118;box-shadow:0 4px 0 #ffd000,0 18px 35px rgba(58,33,24,.18)}
+
+/* Quiet homepage: reuse the soft sun glow from the inner pages. */
+.hero{min-height:510px;background:radial-gradient(circle at 84% 12%,rgba(255,208,0,.25),transparent 30%),linear-gradient(150deg,#fff9ee,#f5e8cf 90%);border-bottom:1px solid var(--line)}
+.hero-text{max-width:720px;margin:165px 0 74px}
+.hero h1{font-size:clamp(48px,5vw,70px);margin-bottom:27px}
+.hero-wave{display:none}
+.intro:after{display:none}
+.intro-showcase{display:grid;grid-template-columns:minmax(290px,.78fr) minmax(0,1.22fr);gap:clamp(34px,5vw,80px);align-items:center}
+.game-screens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.5vw,22px);align-items:start}
+.game-screens figure{margin:0;text-align:center;min-width:0}
+.game-screens img{display:block;width:100%;height:auto;aspect-ratio:411/898;object-fit:cover;border:4px solid var(--ink);border-radius:25px;box-shadow:0 4px 0 var(--sun),0 12px 24px rgba(58,33,24,.16)}
+.game-screens figcaption{margin-top:14px;font-size:13px;font-weight:750;color:var(--ink-light)}
+.lang.upcoming{background:var(--sand)}
+.lang.upcoming small{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-light)}
+.intro-copy p,.page-hero p,.content p,.content li,.step p,.story-split p,.statement p,.section .lead,.quote{color:var(--ink-light)}
+.content a{color:var(--ink);text-decoration-color:var(--gold)}
+@media(max-width:900px){.hero{min-height:auto}.hero-text{margin:58px 0 65px}.intro-showcase{grid-template-columns:1fr;gap:38px}.intro-copy{order:0}.game-screens{max-width:650px;margin-inline:auto}}
+@media(max-width:600px){.hero-text{margin:45px 0 55px}.hero h1{font-size:clamp(40px,10vw,50px)}.hero-lead{font-size:17px}.game-screens{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 4px 14px;margin:0 -4px}.game-screens figure{flex:0 0 min(58vw,225px);scroll-snap-align:center}.game-screens figcaption{font-size:13px}}
+.voice-contributors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:28px 0 34px}
+.voice-contributor{display:flex;align-items:center;gap:18px;margin:0;padding:18px;background:var(--ivory);border:1px solid var(--line);border-radius:20px}
+.voice-contributor img{flex:none;width:104px;height:104px;object-fit:cover;border-radius:16px}
+.voice-contributor figcaption{display:grid;gap:4px;color:var(--ink-light);font-size:14px;line-height:1.45}
+.voice-contributor figcaption strong{color:var(--ink);font-size:19px}
+@media(max-width:700px){.voice-contributors{grid-template-columns:1fr}.voice-contributor img{width:88px;height:88px}}
+.step-screen{display:block;width:min(100%,200px);height:auto;aspect-ratio:411/898;object-fit:cover;margin:18px auto 24px;border:3px solid var(--ink);border-radius:22px;box-shadow:0 4px 0 var(--sun),0 10px 22px rgba(58,33,24,.14)}
+.step:has(.step-screen) h3{margin-bottom:0}
