@@ -190,3 +190,6 @@ body.landing .site-header{position:relative;flex:none}
 .phone.left img{height:100%;margin-top:0;object-fit:cover;object-position:center top}
 @media (min-width:1100px){.landing-title{max-width:none;font-size:clamp(34px,min(6.4vh,4.2vw),68px)}.landing-main{padding-top:clamp(10px,2.4vh,28px)}.phones{margin-top:clamp(10px,2.4vh,26px)}}
 .phone.center,.phone.left,.phone.right{height:104%;bottom:-10%}
+/* Owner 2026-11-28: one sand colour on the landing, header included. */
+body.landing{background:#f5e8cf}
+body.landing .site-header,body.landing .landing-head{background:#f5e8cf;border-bottom:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
