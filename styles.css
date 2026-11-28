@@ -184,3 +184,8 @@ body.landing .site-header{position:relative;flex:none}
 .phone.center{background:#f5e8d2}
 .phone.center img{height:auto;margin-top:10%}
 .phone img.mid{object-position:50% 58%}
+.phone.left{background:#f5e8d2}
+.phone.left img{height:auto;margin-top:10%;object-position:top}
+.phone.left,.phone.right{height:96%;bottom:-6%}
+.phone.left img{height:100%;margin-top:0;object-fit:cover;object-position:center top}
+@media (min-width:1100px){.landing-title{max-width:none;font-size:clamp(34px,min(6.4vh,4.2vw),68px)}.landing-main{padding-top:clamp(10px,2.4vh,28px)}.phones{margin-top:clamp(10px,2.4vh,26px)}}
