@@ -146,3 +146,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:var(--s
 .about-photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:26px;box-shadow:0 6px 0 var(--sun),0 16px 30px rgba(58,33,24,.18)}
 .btn-row.center{justify-content:center;margin-top:22px}
 @media (max-width:820px){.about-split{grid-template-columns:1fr}}
+.hero-app{padding-bottom:clamp(40px,6vw,72px)}
+.hero-app h1{margin-inline:auto}
+.hero-app .center-head{margin-bottom:34px}
+.lang-grid.center{justify-content:center}
+.small.center{text-align:center}
+.link-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.link-cards a{display:grid;gap:4px;padding:20px;background:var(--ivory);border:1px solid var(--line);border-radius:20px;text-decoration:none;color:var(--ink);transition:transform .15s}
+.link-cards a:hover{transform:translateY(-2px);border-color:var(--sun)}
+.link-cards b{font-size:28px}
+.link-cards strong{font-size:17px}
+.link-cards span{color:var(--ink-light);font-size:14px}
+@media (max-width:900px){.link-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hero.hero-app{min-height:0;display:block;padding-top:clamp(36px,5vw,64px);background:radial-gradient(ellipse at 50% 0,rgba(230,170,40,.16),transparent 60%),var(--sand)}
+.hero.hero-app h1{font-size:clamp(36px,5vw,58px);max-width:820px}
